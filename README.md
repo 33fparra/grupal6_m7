@@ -1,4 +1,4 @@
-<img src="public/images/boldoMedio.png" align="right" />
+<img src="boldoMedio.png" align="right" />
  <h1 align= left ><b>Grupal 6 M7 /EquipoBoldo</b> <img src = "https://media.giphy.com/media/gF2m2JOyGReppog8hU/giphy.gif" width = 80px></h1>
 
 <br>
@@ -125,11 +125,11 @@ GROUP BY rut_socio;
 
 5. Boris Guiñez : https://github.com/boanguibe
 
-6. Alfonso Mujica : 
+6. Alfonso Mujica : https://github.com/ALFONSOMUJICAS
 
 7. Felipe Andres Parra : https://github.com/33fparra
 
 
 ### Este proyecto está bajo la licencia ADALID.
-<img src="public/images/boldoMedio.png" align="right" />
+<img src="boldoMedio.png" align="right" />
 
