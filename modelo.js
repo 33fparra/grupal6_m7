@@ -1,11 +1,11 @@
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize("biblioteca", "root", "pipe1234", {
+const sequelize = new Sequelize("biblioteca", "root", "Enicza007@", {
   host: "localhost",
   dialect: "mysql",
 });
 
-const Miembro = sequelize.define("Miembro", {
+const Socio = sequelize.define("Socio", {
   rut: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -55,6 +55,9 @@ const Libro = sequelize.define("Libro", {
     type: DataTypes.STRING,
     allowNull: false,
   },
+  fechaNacimientoAutor: {
+    type: DataTypes.DATEONLY,
+  },
   fechaMuerteAutor: {
     type: DataTypes.DATEONLY,
   },
@@ -79,10 +82,10 @@ const Historial_prestamo = sequelize.define("Historial_prestamo", {
   },
 });
 
-Miembro.hasMany(Historial_prestamo);
-Historial_prestamo.belongsTo(Miembro);
+Socio.hasMany(Historial_prestamo);
+Historial_prestamo.belongsTo(Socio);
 
 Libro.hasMany(Historial_prestamo);
 Historial_prestamo.belongsTo(Libro);
 
-export { Historial_prestamo, Libro, Miembro, sequelize };
+export { Historial_prestamo, Libro, Socio, sequelize };
