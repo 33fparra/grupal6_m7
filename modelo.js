@@ -5,7 +5,7 @@ const sequelize = new Sequelize("biblioteca", "root", "pipe1234", {
   dialect: "mysql",
 });
 
-const Miembro = sequelize.define("Miembro", {
+const Autor = sequelize.define("Autor", {
   rut: {
     type: DataTypes.STRING,
     primaryKey: true,
@@ -27,6 +27,9 @@ const Miembro = sequelize.define("Miembro", {
   telefono: {
     type: DataTypes.STRING,
     allowNull: false,
+  },
+  fechNac: {
+    type: DataTypes.DATEONLY,
   },
 });
 
@@ -79,10 +82,10 @@ const Historial_prestamo = sequelize.define("Historial_prestamo", {
   },
 });
 
-Miembro.hasMany(Historial_prestamo);
-Historial_prestamo.belongsTo(Miembro);
+Autor.hasMany(Historial_prestamo);
+Historial_prestamo.belongsTo(Autor);
 
 Libro.hasMany(Historial_prestamo);
 Historial_prestamo.belongsTo(Libro);
 
-export { Historial_prestamo, Libro, Miembro, sequelize };
+export { Historial_prestamo, Libro, Autor, sequelize };

@@ -1,4 +1,4 @@
-import { Historial_prestamo, Libro, Miembro, sequelize } from "./modelo.js";
+import { Historial_prestamo, Libro, Autor, sequelize } from "./modelo.js";
 import { QueryTypes } from "sequelize";
 
 // Sincronizar modelos con la base de datos
@@ -9,13 +9,14 @@ sequelize.sync({ force: true }).then(async () => {
 
 //SOCIOS
 
-  await Miembro.bulkCreate([
+  await Autor.bulkCreate([
     {
       rut: "1111111-1",
       nombre: "Juan",
       apellido: "Soto",
       direccion: "avenida 1, Santiago",
       telefono: "911111111",
+      
     },
     {
       rut: "2222222-2",
