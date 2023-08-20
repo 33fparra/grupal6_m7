@@ -1,6 +1,6 @@
 import { Sequelize, DataTypes } from "sequelize";
 
-const sequelize = new Sequelize("biblioteca", "root", "Enicza007@", {
+const sequelize = new Sequelize("biblioteca", "root", "pipe1234", {
   host: "localhost",
   dialect: "mysql",
 });

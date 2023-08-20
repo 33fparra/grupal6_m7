@@ -1,5 +1,5 @@
 import { Historial_prestamo, Libro, Socio, sequelize } from "./modelo.js";
-import { QueryTypes } from "sequelize";
+import { QueryTypes, Op, fn, col, literal } from "sequelize";
 
 // Sincronizar modelos con la base de datos
 sequelize.sync({ force: true }).then(async () => {
@@ -213,21 +213,22 @@ sequelize.sync({ force: true }).then(async () => {
     console.error("Error al buscar autores nacidos despues del 70", error);
   });
 
-   // Consulta para mostrar autores que nacieron despues del 70
-   sequelize
-   .query(`SELECT * FROM biblioteca.libros 
-   WHERE libros.fechaNacimientoAutor > '1970-01-01';`, {
-     type: QueryTypes.SELECT,
-   })
-   .then((libros) => {
-     console.log("autores que nacieron despues del 70");
-     libros.forEach((libro) => {
-       console.log(`${libro.nombreAutor}  ${libro.apellidoAutor} `);
-     });
-   })
-   .catch((error) => {
-     console.error("Error al buscar autores nacidos despues del 70", error);
-   });
+   // d. Si se cobrara una multa de $100 por cada día de atraso, mostrar cuánto debería pagar cada usuario que entregue el préstamo después de 7 días:
 
-    
+  sequelize.query(`
+  SELECT SocioRut, 
+         SUM(TIMESTAMPDIFF(DAY, fechaPrestamo, fechaDevolucion) - 7) * 100 AS multa 
+  FROM Historial_prestamos 
+  WHERE TIMESTAMPDIFF(DAY, fechaPrestamo, fechaDevolucion) > 7 
+  GROUP BY SocioRut
+`)
+.then(result => {
+  console.log("Multa por atraso:");
+  result[0].forEach(r => {
+    console.log(`RUT: ${r.SocioRut}, Multa: $${r.multa}`);
+  });
+}).catch(error => {
+  console.error("Error al calcular la multa:", error);
+});
+ 
 });
